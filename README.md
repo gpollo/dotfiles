@@ -1,4 +1,6 @@
-dotfiles
+Config
 ========
 
-Personnal configuration files
+File missing:
+- .zshenv
+   - PUUSH_API_KEY
