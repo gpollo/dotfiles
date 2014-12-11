@@ -1,4 +1,4 @@
-if [[ ! -f .zshenv ]]; then
+if [[ ! -f ~/.zshenv ]]; then
 	echo "Warning: .zshenv not found!"
 fi
 
