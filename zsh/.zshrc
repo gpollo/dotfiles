@@ -19,6 +19,7 @@ source $ZSH/oh-my-zsh.sh
 alias cd="cd -P"
 alias cdpkg="cdpkg"
 alias ls="ls --color=yes"
+alias tagscanner="wine ~/.wine/drive_c/Program\ Files\ \(x86\)/TagScanner/Tagscan.exe&"
 alias steam-wine="nice -n 19 wine '/data/Game/Steam/Steam.exe' -no-dwrite"
 alias battle-net="wine64 /data/Game/Battle.net/Battle.net\ Launcher.exe"
 
