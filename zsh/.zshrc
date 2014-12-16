@@ -17,15 +17,5 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 alias cd="cd -P"
-alias cdpkg="cdpkg"
+alias cdpkg="source ~/Software/cdpkg"
 alias ls="ls --color=yes"
-
-function cdpkg
-{
-	echo "--extracting tarball..."
-	tar -zxvf $1
-	echo "--removing tarball..."
-	rm $1
-	echo "--changing directory..."
-	cd ${1%%.*}
-}

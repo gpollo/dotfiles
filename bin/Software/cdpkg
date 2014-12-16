@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [[ ! -n $1 ]]; then
+	echo "Error: missing argument!"
+	return 1
+fi
+
+URL=$1
+FILE=$(basename $URL)
+
+wget --output-document $FILE $URL
+tar -zxvf $FILE
+rm $FILE
+cd ${FILE%%.*}
