@@ -2,7 +2,7 @@ if [[ ! -f ~/.zshenv ]]; then
 	echo "Warning: .zshenv not found!"
 fi
 
-export PATH=$PATH:/home/gabriel/Documents/script/src
+export PATH=$PATH:~/Documents/script/src:~/Software
 export LANG="en_US.UTF-8"
 export STEAM_RUNTIME=0
 
@@ -19,9 +19,6 @@ source $ZSH/oh-my-zsh.sh
 alias cd="cd -P"
 alias cdpkg="cdpkg"
 alias ls="ls --color=yes"
-alias tagscanner="wine ~/.wine/drive_c/Program\ Files\ \(x86\)/TagScanner/Tagscan.exe&"
-alias steam-wine="nice -n 19 wine '/data/Game/Steam/Steam.exe' -no-dwrite"
-alias battle-net="wine64 /data/Game/Battle.net/Battle.net\ Launcher.exe"
 
 function cdpkg
 {
