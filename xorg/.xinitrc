@@ -27,6 +27,6 @@ transmission-gtk&
 thunderbird&
 hexchat&
 steam&
-firefox-gtk3&
+firefox&
 
 exec dbus-launch dwm
