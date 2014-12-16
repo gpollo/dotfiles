@@ -14,10 +14,6 @@ function music_time {
 	mpc | awk 'NR==2 {print $3}'
 }
 
-function utime {
-	date +%H:%M:%S
-}
-
 function music {
 	if [[ $MUSIC_STATE == true ]]; then
 		music_status | tr -d '\n'
@@ -31,10 +27,21 @@ function music {
 	fi
 }
 
+function utime {
+	date +%H:%M:%S
+}
+
+function volume {
+	printf "Volume: "
+	amixer | awk 'NR==6 {print $5}' | tr -d '[]\n'
+}
+
 if [[ $(mpc | awk 'NR==2 {print $1}') == "" ]]; then
 	MUSIC_STATE=false
 fi
 
+volume
+printf " | "
 music
 printf " | "
 utime
