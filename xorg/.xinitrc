@@ -10,10 +10,12 @@ fi
 
 export STEAM_RUNTIME=0
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+export MPD_HOST=192.168.0.16
+
 wmname LG3D
 
 while true; do
-	xsetroot -name "$(date +%H:%M:%S)"
+	xsetroot -name "$(mpc -f '%artist% - %title%' | sed -n 1p) | $(date +%H:%M:%S)"
 done &
 
 xset m 1 10
