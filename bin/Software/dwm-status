@@ -1,5 +1,7 @@
 #!/bin/bash
 
+MUSIC_STATE=true
+
 function music_status {
 	mpc | awk 'NR==2 {print $1}'
 }
@@ -16,10 +18,23 @@ function utime {
 	date +%H:%M:%S
 }
 
-music_status | tr -d '\n'
-printf " "
-music_name   | tr -d '\n'
-printf " ["
-music_time   | tr -d '\n'
-printf "] | "
+function music {
+	if [[ $MUSIC_STATE == true ]]; then
+		music_status | tr -d '\n'
+		printf " "
+		music_name   | tr -d '\n'
+		printf " ["
+		music_time   | tr -d '\n'
+		printf "]"
+	else
+		printf "[stopped]"
+	fi
+}
+
+if [[ $(mpc | awk 'NR==2 {print $1}') == "" ]]; then
+	MUSIC_STATE=false
+fi
+
+music
+printf " | "
 utime
