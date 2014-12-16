@@ -1,0 +1,3 @@
+#!/bin/bash
+
+nice -n 19 wine64 '/data/Game/Steam/Steam.exe' -no-dwrite
