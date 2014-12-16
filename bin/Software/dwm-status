@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function music_status {
+	mpc | awk 'NR==2 {print $1}'
+}
+
+function music_name {
+	mpc -f '%artist% - %title%' | sed -n 1p
+}
+
+function music_time {
+	mpc | awk 'NR==2 {print $3}'
+}
+
+function utime {
+	date +%H:%M:%S
+}
+
+music_status | tr -d '\n'
+printf " "
+music_name   | tr -d '\n'
+printf " ["
+music_time   | tr -d '\n'
+printf "] | "
+utime

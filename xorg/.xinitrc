@@ -15,7 +15,7 @@ export MPD_HOST=192.168.0.16
 wmname LG3D
 
 while true; do
-	xsetroot -name "$(mpc -f '%artist% - %title%' | sed -n 1p) | $(date +%H:%M:%S)"
+	xsetroot -name "$(dwm-status)"
 done &
 
 xset m 1 10
