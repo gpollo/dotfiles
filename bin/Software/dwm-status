@@ -44,6 +44,15 @@ function power {
 	battery | tr -d '\n'
 }
 
+function address {
+    if [[ $(ifconfig $DEV | awk 'NR==2 {print $1}' ) == "inet" ]]; then
+        printf "Connected: "
+        ifconfig $DEV | awk 'NR==2 {print $2}' | tr -d '\n'
+    else
+        printf "Not Connected"
+    fi
+}
+
 volume
 printf " | "
 music
