@@ -15,6 +15,10 @@ function music_time {
 }
 
 function music {
+	if [[ $(mpc | awk 'NR==2 {print $1}') == "" ]]; then
+		MUSIC_STATE=false
+	fi
+
 	if [[ $MUSIC_STATE == true ]]; then
 		music_status | tr -d '\n'
 		printf " "
@@ -35,10 +39,6 @@ function volume {
 	printf "Volume: "
 	amixer | awk 'NR==6 {print $5}' | tr -d '[]\n'
 }
-
-if [[ $(mpc | awk 'NR==2 {print $1}') == "" ]]; then
-	MUSIC_STATE=false
-fi
 
 volume
 printf " | "
