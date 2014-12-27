@@ -40,6 +40,10 @@ function volume {
 	amixer | awk 'NR==6 {print $5}' | tr -d '[]\n'
 }
 
+function power {
+	battery | tr -d '\n'
+}
+
 volume
 printf " | "
 music
