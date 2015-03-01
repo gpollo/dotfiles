@@ -16,6 +16,7 @@ set background=dark
 set mouse=a
 set hlsearch
 set incsearch
+set paste
 
 filetype plugin indent on
 syntax on
