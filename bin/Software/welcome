@@ -1,0 +1,62 @@
+#!/bin/bash
+
+unset GREP_OPTIONS
+
+COLS=$(tput cols)
+ROWS=$(tput lines)
+
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+WHITE=$(tput setaf 7)
+RESET=$(tput sgr0)
+
+function print_center {
+    WIDTH=${#1}
+
+    if [[ -n $2 ]]; then
+        CENTERCOL=$((COLS/2-$2/2))
+    else
+        CENTERCOL=$((COLS/2-WIDTH/2))
+    fi
+
+    tput cuf $CENTERCOL
+    echo -e "$1"
+}
+
+function print_title {
+    figlet -t $(cat /etc/hostname) | while IFS= read -r LINE; do
+        print_center "$LINE"
+    done
+}
+
+function print_line {
+   print_center "-------------------" 
+}
+
+function print_disk {
+    while IFS= read -r LINE; do
+        WIDTH=${#LINE}
+    
+        if [[ $WIDTH -gt $MAXWIDTH ]]; then
+            MAXWIDTH=$WIDTH
+        fi
+    done < <(df -h | grep -i "/dev/sd")
+
+    while IFS= read -r LINE; do
+        print_center "$LINE" $MAXWIDTH
+    done < <(df -h | grep -i "/dev/sd")
+}
+
+clear
+
+echo -n "$YELLOW"
+print_title
+print_line
+print_center
+echo -n "$GREEN"
+print_center "$(uname -srmo)"
+print_center
+echo -n "$GREEN"
+print_disk
+print_center
