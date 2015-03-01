@@ -1,7 +1,12 @@
 #!/bin/bash
 
 MUSIC_STATE=true
-DEV=eth0
+TEMPDIR=/var/tmp/dwm-append/
+
+if [[ ! -n $INETDEV ]]; then
+	echo "Set the variable INETDEV"
+	exit 1
+fi
 
 function music_status {
 	mpc | awk 'NR==2 {print $1}'
@@ -46,7 +51,7 @@ function power {
 }
 
 function address {
-	if [[ $(ifconfig $DEV | awk 'NR==2 {print $1}' ) == "inet" ]]; then
+	if [[ $(ifconfig $INETDEV | awk 'NR==2 {print $1}' ) == "inet" ]]; then
 		printf "Connected: "
 		ifconfig $DEV | awk 'NR==2 {print $2}' | tr -d '\n'
 	else
@@ -54,6 +59,24 @@ function address {
 	fi
 }
 
+function append {
+	if [[ ! -d $TEMPDIR ]]; then
+		mkdir $TEMPDIR
+	fi
+
+	cd $TEMPDIR
+
+	for FILE in ./* ; do
+		if [[ ! $FILE == "./*" ]]; then
+			cat $FILE | tr -d "\n"
+			printf " | "
+		fi
+	done
+}
+
+append
+address
+printf " | "
 volume
 printf " | "
 music
