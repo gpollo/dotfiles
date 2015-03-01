@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [[ ! -n $JOYSTICKID ]]; then
+	echo "Set the variable JOYSTICKID"
+	exit 1
+fi
+
+MOUSE=$(xinput list-props $JOYSTICKID | grep "Generate Mouse Events" | cut -c25-27)
+KEY=$(xinput list-props $JOYSTICKID   | grep "Generate Key Events"   | cut -c23-25)
+STATE=$(xinput list-props $JOYSTICKID | grep "Generate Mouse Events" | cut -c31)
+
+
+if [[ $STATE == 0 ]]; then
+	STATE=1
+else
+	STATE=0
+fi
+
+xinput set-prop $JOYSTICKID $MOUSE $STATE
+xinput set-prop $JOYSTICKID $KEY $STATE
