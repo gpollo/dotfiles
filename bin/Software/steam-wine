@@ -1,3 +1,6 @@
 #!/bin/bash
 
-nice -n 19 wine64 '/data/Game/Steam/Steam.exe' -no-dwrite
+export WINEPREFIX=~/.wine-steam
+export WINEARCH="win32"
+
+wine /data/Game/Steam/Steam.exe -no-dwrite
