@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# Copyright (c) blha303 at github.com
+# Gabriel-Andrew Pollo Guilbert
+#
+# This small script will upload a file to puush
+# and copy the returned link to the X clipboard.
+#
+# see https://github.com/blha303/puush-linux
+
+if [ -z "$PUUSH_API_KEY" ]; then
+    printf "PUUSH_API_KEY is not set\n" 1>&2
+    exit 1
+elif ! [ -r "$1" ]; then
+    printf "Specify a file to be uploaded\n" 1>&2
+    exit 1
+fi
+
+RESPONSE=$(curl "https://puush.me/api/up" -# -F "k=$PUUSH_API_KEY" -F "z=poop" -F "f=@$1" | sed -s "s/,/ /g")
+CODE=$(awk '{print $1;}' <<< $RESPONSE)
+
+if [[ $CODE == 0 ]]; then
+    URL=$(awk '{print $2;}' <<< $RESPONSE)
+
+    if [[ -n $DISPLAY ]]; then
+        xsel --clipboard <<< $URL
+    else
+        printf "$URL\n"
+    fi
+else
+    exit $CODE
+fi
