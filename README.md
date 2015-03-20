@@ -1,9 +1,3 @@
 Config
 ======
-Personnal configuration files
-
-
-Missing Files
--------------
-- .zshenv
-   - PUUSH_API_KEY
+Those are my personnal GNU/Linux configuration files.
