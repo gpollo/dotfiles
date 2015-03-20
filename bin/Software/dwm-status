@@ -4,8 +4,7 @@ MUSIC_STATE=true
 TEMPDIR=/var/tmp/dwm-append/
 
 if [[ ! -n $INETDEV ]]; then
-	echo "Set the variable INETDEV"
-	exit 1
+	INETDEV=$(ifconfig | grep -m 1 -i "UP,BROADCAST,RUNNING,MULTICAST" | awk '{print $1;}' | sed -s "s/://g")
 fi
 
 function music_status {
