@@ -13,6 +13,7 @@ wmname LG3D
 
 while true; do
 	xsetroot -name "$(dwm-status)"
+	sleep 1
 done &
 
 xset m 1 10

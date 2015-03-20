@@ -1,3 +1,6 @@
 #!/bin/bash
 
-WINEPREFIX=~/.wine-bnet WINEARCH="win32" wine /data/Game/Battle.net/Battle.net\ Launcher.exe
+export WINEPREFIX=~/.wine-bnet
+export WINEARCH="win32"
+
+wine /data/Game/Battle.net/Battle.net.exe
