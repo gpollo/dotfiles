@@ -25,11 +25,11 @@ function music {
 	fi
 
 	if [[ $MUSIC_STATE == true ]]; then
-		music_status | tr -d '\n'
+		music_status
 		printf " "
-		music_name   | tr -d '\n'
+		music_name
 		printf " ["
-		music_time   | tr -d '\n'
+		music_time
 		printf "]"
 	else
 		printf "[stopped]"
@@ -42,17 +42,17 @@ function utime {
 
 function volume {
 	printf "Volume: "
-	amixer | awk 'NR==6 {print $5}' | tr -d '[]\n'
+	amixer | awk 'NR==6 {print $5}'
 }
 
 function power {
-	battery | tr -d '\n'
+	battery
 }
 
 function address {
 	if [[ $(ifconfig $INETDEV | awk 'NR==2 {print $1}' ) == "inet" ]]; then
 		printf "Connected: "
-		ifconfig $INETDEV | awk 'NR==2 {print $2}' | tr -d '\n'
+		ifconfig $INETDEV | awk 'NR==2 {print $2}'
 	else
 		printf "Not Connected"
 	fi
@@ -67,17 +67,13 @@ function append {
 
 	for FILE in ./* ; do
 		if [[ ! $FILE == "./*" ]]; then
-			cat $FILE | tr -d "\n"
 			printf " | "
+			cat $FILE
 		fi
 	done
 }
 
-append
-address
-printf " | "
-volume
-printf " | "
-music
-printf " | "
-utime
+for WIDGET in $DWM_WIDGET; do
+	$WIDGET
+	printf " | "
+done | tr -d "\n" | cut -c 4- | rev | cut -c 4- | rev
