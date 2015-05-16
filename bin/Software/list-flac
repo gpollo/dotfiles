@@ -1,0 +1,27 @@
+#!/bin/bash
+
+C=0
+T=0
+
+printf "[size=4][b]Tracklist[/b][/size]\n"
+while read FILE; do
+    NAME=$(echo $FILE | cut -c 7- | rev | cut -c 6- | rev)
+    TIME=$(metaflac --show-total-samples --show-sample-rate "$FILE" |
+           tr '\n' ' ' | awk '{print $1/$2}' -)
+
+    T=$(  echo "$TIME+$T"      | bc)
+    T_H=$(echo "$TIME/3600"    | bc)
+    T_M=$(echo "$TIME%3600/60" | bc)
+    T_S=$(echo "$TIME%60"      | bc)
+    T_S=${T_S%.*}
+
+    let C+=1
+    printf "[b]%.2d.[/b] $NAME [i](%.0f:%02d)[/i]\n" $C $T_M $T_S
+done < <(find ./ -iname "*.flac")
+
+T_H=$(echo "$T/3600"    | bc)
+T_M=$(echo "$T%3600/60" | bc)
+T_S=$(echo "$T%60"      | bc)
+T_S=${T_S%.*}
+
+printf "\n[b]Total length:[/b] %.0f:%02d\n" $T_M $T_S
