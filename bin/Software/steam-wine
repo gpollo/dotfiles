@@ -2,5 +2,6 @@
 
 export WINEPREFIX=~/.wine-steam
 export WINEARCH="win32"
+export WINEDEBUG=-all
 
-wine /data/Game/Steam/Steam.exe -no-dwrite
+wine $WINEPREFIX/drive_c/Program\ Files/Steam/Steam.exe -no-dwrite
