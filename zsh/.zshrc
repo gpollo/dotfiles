@@ -2,6 +2,8 @@ if [[ ! -f ~/.zshenv ]]; then
 	echo "Warning: .zshenv not found!"
 fi
 
+source ~/.zshenv
+
 unset GREP_OPTIONS
 
 ZSH=/usr/share/oh-my-zsh/
