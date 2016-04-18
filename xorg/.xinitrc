@@ -19,7 +19,7 @@ done &
 
 xset m 1 10
 pulseaudio --start
-feh --bg-fill Pictures/wallpaper/laser.png
+feh --bg-fill Pictures/wallpaper/laser.jpg
 
 for APP in $APP_START; do
 	$APP&
