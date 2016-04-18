@@ -17,7 +17,7 @@ while read FILE; do
 
     let C+=1
     printf "[b]%.2d.[/b] $NAME [i](%.0f:%02d)[/i]\n" $C $T_M $T_S
-done < <(find ./ -iname "*.flac")
+done < <(find ./ -iname "*.flac" | sort -t '\0' -n)
 
 T_H=$(echo "$T/3600"    | bc)
 T_M=$(echo "$T%3600/60" | bc)

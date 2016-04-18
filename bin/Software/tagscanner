@@ -1,3 +1,6 @@
 #!/bin/bash
 
-wine64 ~/.wine/drive_c/Program\ Files\ \(x86\)/TagScanner/Tagscan.exe
+WINEPREFIX=~/.wine-bin
+WINEARCH=win32
+
+wine $WINEPREFIX/drive_c/Program\ Files/TagScanner/Tagscan.exe

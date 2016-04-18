@@ -13,14 +13,13 @@ fi
 wmname LG3D
 
 while true; do
-	xsetroot -name "$(dwm-status)"
+	xsetroot -name "$(dwm-status | sed "s/&/&amp;/g")"
 	sleep 1
 done &
 
 xset m 1 10
-compton -b -cCGfF -o 0.60 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88
 pulseaudio --start
-feh --bg-tile /home/gabriel/Pictures/wallpaper/nuclear.jpg
+feh --bg-fill Pictures/wallpaper/laser.png
 
 for APP in $APP_START; do
 	$APP&
