@@ -1,7 +1,3 @@
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
 set showcmd
 set number
 set showmatch
@@ -18,5 +14,21 @@ set hlsearch
 set incsearch
 set paste
 
+" use space rather than tabs
+set tabstop=4
+set softtabstop=0
+set expandtab
+set shiftwidth=4
+set smarttab
+
 filetype plugin indent on
 syntax on
+
+" capital letter alternative to some commands
+command! W  write
+command! Q  quit
+
+" external plugins
+call plug#begin('~/.vim/plugged/')
+    Plug 'lervag/vimtex'
+call plug#end()
