@@ -10,19 +10,27 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	unset f
 fi
 
+# fix some tiling window manager bugs
 wmname LG3D
 
-while true; do
-	xsetroot -name "$(dwm-status | sed "s/&/&amp;/g")"
-	sleep 1
-done &
-
-xset m 1 10
+# start pulse audio
 pulseaudio --start
-feh --bg-fill Pictures/wallpaper/laser.png
 
-for APP in $APP_START; do
-	$APP&
-done
+# background picture
+feh --bg-fill "Pictures/wallpaper/spacex.png"
 
-exec dbus-launch dwm
+# mouse speed/resolution
+xset m 1 10
+razercfg --res 900
+
+# use french canadian keyboard
+setxkbmap ca
+
+# dual monitor setup
+xrandr --output HDMI-A-0 --auto --set audio off
+
+# redshift for Montreal city
+redshift -l 45.5:-73.6 -t 6500:4000 &
+
+# start xmonad
+exec dbus-launch xmonad

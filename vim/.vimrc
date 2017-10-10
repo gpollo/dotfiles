@@ -1,9 +1,3 @@
-set nocompatible
-filetype off 
-
-set tabstop=4
-set shiftwidth=4
-set smarttab
 set showcmd
 set number
 set showmatch
@@ -23,12 +17,22 @@ set colorcolumn=80
 
 set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
 
+" external plugins
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'lervag/vimtex'
+    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'lervag/vimtex'
 call vundle#end()
+
+" use space rather than tabs
+set tabstop=4
+set softtabstop=0
+set expandtab
+set shiftwidth=4
+set smarttab
 
 filetype plugin indent on
 syntax on
 
-set expandtab
+" capital letter alternative to some commands
+command! W  write
+command! Q  quit

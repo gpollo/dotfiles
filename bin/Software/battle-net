@@ -3,4 +3,4 @@
 export WINEPREFIX=~/.wine-bnet
 export WINEARCH="win32"
 
-/opt/wine-staging/bin/wine /data/Game/Battle.net/Battle.net.exe
+wine /data/Game/Battle.net/Battle.net.exe
