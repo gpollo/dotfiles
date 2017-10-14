@@ -1,0 +1,39 @@
+general {
+    colors   = false
+    interval = 5
+}
+
+order += "wireless wlp3s0"
+order += "cpu_usage"
+order += "tztime local"
+order += "battery 0"
+
+wireless wlp3s0 {
+    format_up   =  "📶 %essid, %ip"
+    format_down =  ""
+}
+
+cpu_usage {
+    format = "💻 cpu: %usage"
+}
+
+tztime local {
+    format = "🕐 %A, %B %e - %H:%M:%S"
+}
+
+battery 0 {
+    format      = "%status %percentage"
+    format_down = ""
+
+    last_full_capacity       = true
+    integer_battery_capacity = true
+    hide_seconds             = true
+
+    threshold_type = percentage
+    low_threshold  = 11
+
+    status_chr  = "⚡"
+    status_bat  = "🔋"
+    status_unk  = "⚠"
+    status_full = "✔"
+}
