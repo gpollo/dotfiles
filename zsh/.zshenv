@@ -3,8 +3,20 @@ export PUUSH_API_KEY=""
 export XILINXD_LICENSE_FILE=""
 
 # locale settings
-export LANG="en_CA.UTF-8"
-export LC_MESSAGES="C"
+export LANG=en_CA.UTF-8
+export LC_CTYPE=en_CA.UTF-8
+export LC_NUMERIC=en_CA.UTF-8
+export LC_TIME=en_CA.UTF-8
+export LC_COLLATE=C
+export LC_MONETARY=en_CA.UTF-8
+export LC_MESSAGES=en_CA.UTF-8
+export LC_PAPER=en_CA.UTF-8
+export LC_NAME=en_CA.UTF-8
+export LC_ADDRESS=en_CA.UTF-8
+export LC_TELEPHONE=en_CA.UTF-8
+export LC_MEASUREMENT=en_CA.UTF-8
+export LC_IDENTIFICATION=en_CA.UTF-8
+export LC_ALL=en_CA.UTF-8
 
 # common paths
 export PATH=$PATH:~/Software
