@@ -27,7 +27,8 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 fi
 
 # add ssh keys
-ssh-add ~/.ssh/github
+ssh-add ~/.ssh/github &> /dev/null
+ssh-add ~/.ssh/bitbucket &> /dev/null
 
 # execute the warm welcome message
 ~/Software/welcome
