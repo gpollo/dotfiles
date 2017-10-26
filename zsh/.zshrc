@@ -9,7 +9,7 @@ fi
 unset GREP_OPTIONS
 
 # oh-my-zsh settings
-ZSH=~/.oh-my-zsh/
+ZSH=/usr/share/oh-my-zsh/
 ZSH_THEME="bira"
 DISABLE_AUTO_UPDATE="true"
 
