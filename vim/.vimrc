@@ -21,6 +21,11 @@ set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
 call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
     Plugin 'lervag/vimtex'
+    Plugin 'fatih/vim-go'
+    Plugin 'rust-lang/rust.vim'
+    Plugin 'leafgarland/typescript-vim'
+    Plugin 'google/vim-maktaba'
+    Plugin 'google/vim-codefmt'
 call vundle#end()
 
 " use space rather than tabs
