@@ -3,12 +3,12 @@ general {
     interval = 5
 }
 
-order += "wireless wlp3s0"
+order += "wireless wlp1s0"
 order += "cpu_usage"
 order += "tztime local"
 order += "battery 0"
 
-wireless wlp3s0 {
+wireless wlp1s0 {
     format_up   =  "📶 %essid, %ip"
     format_down =  ""
 }
