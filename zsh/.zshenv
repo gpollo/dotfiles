@@ -22,7 +22,9 @@ export LC_IDENTIFICATION=en_CA.UTF-8
 export LC_ALL=en_CA.UTF-8
 
 # common paths
+export GOPATH=~/.go
 export PATH=$PATH:~/Software
+export PATH=$PATH:$GOPATH/bin
 export ANDROID_HOME=/opt/android-sdk
 
 # keyboard layout
