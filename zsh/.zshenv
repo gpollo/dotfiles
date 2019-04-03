@@ -2,6 +2,9 @@
 export PUUSH_API_KEY=""
 export XILINXD_LICENSE_FILE=""
 
+# docker
+export DOCKER_ID_USER="theniceguy"
+
 # locale settings
 export LANG=en_CA.UTF-8
 export LC_CTYPE=en_CA.UTF-8
