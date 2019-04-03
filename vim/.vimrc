@@ -26,6 +26,7 @@ call vundle#begin()
     Plugin 'leafgarland/typescript-vim'
     Plugin 'google/vim-maktaba'
     Plugin 'google/vim-codefmt'
+    Plugin 'tikhomirov/vim-glsl'
 call vundle#end()
 
 " use space rather than tabs

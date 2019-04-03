@@ -10,7 +10,7 @@ unset GREP_OPTIONS
 
 # oh-my-zsh settings
 ZSH=/usr/share/oh-my-zsh/
-ZSH_THEME="bira"
+ZSH_THEME="af-magic"
 DISABLE_AUTO_UPDATE="true"
 
 plugins=(git systemd pip)
@@ -29,6 +29,8 @@ fi
 # add ssh keys
 ssh-add ~/.ssh/github &> /dev/null
 ssh-add ~/.ssh/bitbucket &> /dev/null
+ssh-add ~/.ssh/gitlab &> /dev/null
+ssh-add ~/.ssh/gitlab_step &> /dev/null
 
 # execute the warm welcome message
 ~/Software/welcome

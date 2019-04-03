@@ -25,7 +25,10 @@ export LC_ALL=en_CA.UTF-8
 export GOPATH=~/.go
 export PATH=$PATH:~/Software
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:~/Software/stack-1.7.1-linux-x86_64
+export PATH=$PATH:~/.local/bin/
 export ANDROID_HOME=/opt/android-sdk
+export GOPATH=$HOME/Workspace/go
 
 # keyboard layout
 export XKB_DEFAULT_LAYOUT=ca
@@ -43,3 +46,9 @@ export EDITOR=vim
 
 # disable steam runtime
 export STEAM_RUNTIME=0
+
+# change directory color
+export LS_COLORS=$LS_COLORS:'di=1;32'
+
+# use LS_COLORS for tab completion
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}

@@ -1,7 +1,6 @@
 #!/bin/sh
 
 source ~/.zshrc
-xrdb ~/.Xresources
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	for f in /etc/X11/xinitrc.d/*; do
@@ -10,6 +9,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	unset f
 fi
 
+# TODO check if commands exist
+
 # fix some tiling window manager bugs
 wmname LG3D
 
@@ -17,20 +18,28 @@ wmname LG3D
 pulseaudio --start
 
 # background picture
-feh --bg-fill "Pictures/wallpaper/spacex.png"
+feh --bg-fill "$HOME/Pictures/wallpaper/falcon_heavy.jpg"
 
 # mouse speed/resolution
-xset m 1 10
+xset m 1 0
 razercfg --res 900
 
 # use french canadian keyboard
 setxkbmap ca
 
 # dual monitor setup
-xrandr --output HDMI-A-0 --auto --set audio off
+xrandr --output "HDMI-A-1"      --mode "1920x1080" --left-of  "HDMI-A-0"
+xrandr --output "DisplayPort-1" --mode "1920x1080" --right-of "HDMI-A-0"
+xrandr --output "HDMI-A-0"      --mode "1920x1080" --primary
+
+# disable mouse acceleration
+xset m 1 0
 
 # redshift for Montreal city
 redshift -l 45.5:-73.6 -t 6500:4000 &
+
+# compton compositor
+compton&
 
 # start xmonad
 exec dbus-launch xmonad
