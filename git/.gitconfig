@@ -3,3 +3,5 @@
 	name = Gabriel-Andrew Pollo Guilbert
 [http]
 	sslverify = true
+[credential]
+	helper = cache --timeout=3600
