@@ -7,12 +7,7 @@ set $right l
 set $term lxterminal
 set $menu dmenu_run
 
-output LVDS-1 pos 0 0 res 1920x1080
-output VGA-1 pos 1920 0 res 1440x900
-
 output * bg /home/gabriel/Pictures/wallpaper/spacex.png fill
-#output * bg /home/gabriel/r.png fill
-
 
 ### Key bindings
 
