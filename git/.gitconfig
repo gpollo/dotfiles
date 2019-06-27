@@ -1,7 +1,8 @@
 [user]
-	email = gabriel14_wii@hotmail.com
+	email = gabrielpolloguilbert@hotmail.com
 	name = Gabriel-Andrew Pollo Guilbert
 [http]
 	sslverify = true
 [credential]
 	helper = cache --timeout=3600
+
