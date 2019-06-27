@@ -16,10 +16,42 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(git systemd pip)
 source $ZSH/oh-my-zsh.sh
 
+# highlight words (similar to grep)
+function highlight() {
+	declare -A fg_color_map
+	fg_color_map[black]=30
+	fg_color_map[red]=31
+	fg_color_map[green]=32
+	fg_color_map[yellow]=33
+	fg_color_map[blue]=34
+	fg_color_map[magenta]=35
+	fg_color_map[cyan]=36
+	 
+	fg_c=$(echo -e "\e[1;${fg_color_map[$1]}m")
+	c_rs=$'\e[0m'
+	sed -u s"/$2/$fg_c\0$c_rs/g"
+}
+alias hl="highlight red"
+alias hlr="highlight red"
+alias hlg="highlight green"
+alias hlb="highlight blue"
+alias hly="highlight yellow"
+alias hlc="highlight cyan"
+
 # custom alias
 alias cd="cd -P"
 alias cdpkg="source ~/Software/cdpkg"
 alias ls="ls --color=yes"
+alias grep="grep --color=always"
+
+alias c="cd"
+alias l="ls"
+alias e="vim"
+alias gr="grep -nir"
+alias lp="ps aux | grep -i"
+alias pd="popd"
+alias gv="grep -v"
+alias kt="awk '{print \$2}' | xargs kill $@"
 
 # execute graphical server if logon is in TTY1
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
