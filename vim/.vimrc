@@ -17,6 +17,9 @@ set colorcolumn=80
 
 set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
 
+" preview window colors (white around black)
+highlight Pmenu ctermfg=15 ctermbg=0
+
 " external plugins
 call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
