@@ -38,6 +38,25 @@ alias hlb="highlight blue"
 alias hly="highlight yellow"
 alias hlc="highlight cyan"
 
+# puush files
+function puush() {
+    local filename="$1"
+    local file_url
+
+    file_url=$(
+        curl -X POST --fail --silent --show-error \
+            --cookie "SESSION_KEY=$PUUSH_API_KEY" \
+            --form "file=@$filename" \
+            https://files.gpol.sh/api/upload
+    )
+
+    if [[ -n "$DISPLAY" ]]; then
+        xsel --clipboard <<< "$file_url"
+    else
+        echo "$file_url"
+    fi
+}
+
 # custom alias
 alias cd="cd -P"
 alias cdpkg="source ~/Software/cdpkg"
