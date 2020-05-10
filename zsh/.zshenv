@@ -27,8 +27,12 @@ export PATH=$PATH:~/Software
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:~/Software/stack-1.7.1-linux-x86_64
 export PATH=$PATH:~/.local/bin/
+export PATH=$PATH:~/.gem/ruby/2.6.0/bin
 export ANDROID_HOME=/opt/android-sdk
 export GOPATH=$HOME/Workspace/go
+
+# Add .NET Core SDK tools
+export PATH="$PATH:~/.dotnet/tools"
 
 # keyboard layout
 export XKB_DEFAULT_LAYOUT=ca
@@ -49,6 +53,3 @@ export STEAM_RUNTIME=0
 
 # change directory color
 export LS_COLORS=$LS_COLORS:'di=1;32'
-
-# use LS_COLORS for tab completion
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
