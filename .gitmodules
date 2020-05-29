@@ -1,0 +1,3 @@
+[submodule "bin/Software/CMock"]
+	path = bin/Software/CMock
+	url = https://github.com/ThrowTheSwitch/CMock
