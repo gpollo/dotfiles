@@ -60,27 +60,42 @@ function search_directory() {
 alias sf="search_file"
 alias sd="search_directory"
 
+###############
+# puush files #
+###############
+
+function puush() {
+    local filename="$1"
+    local file_url
+
+    file_url=$(
+        curl -X POST --fail --silent --show-error \
+            --cookie "SESSION_KEY=$PUUSH_API_KEY" \
+            --form "file=@$filename" \
+            https://files.gpol.sh/api/upload
+    )
+
+    if [[ -n "$DISPLAY" ]]; then
+        xsel --clipboard <<< "$file_url"
+    else
+        echo "$file_url"
+    fi
+}
+
 #################
 # other aliases #
 #################
 
 alias cd="cd -P"
-alias cdpkg="source ~/Software/cdpkg"
 alias ls="ls --color=yes"
 alias grep="grep --color=always"
 alias ccat="pygmentize -g"
-
-alias c="cd"
-alias l="ls"
-alias e="vim"
 alias gr="grep -nir"
 alias lp="ps aux | grep -i"
 alias pd="popd"
 alias gv="grep -v"
 alias kt="awk '{print \$2}' | xargs kill $@"
-
 alias cmock="ruby ~/Software/CMock/lib/cmock.rb"
-
 alias covid="curl -L covid19.trackercli.com/history/ca"
 alias weather="curl wttr.in"
 alias termbin="nc termbin.com 9999"
@@ -91,12 +106,14 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 fi
 
 # add ssh keys
-ssh-add ~/.ssh/github &> /dev/null
+ssh-add ~/.ssh/aur &> /dev/null
 ssh-add ~/.ssh/bitbucket &> /dev/null
+ssh-add ~/.ssh/digitalocean &> /dev/null
+ssh-add ~/.ssh/eclipse &> /dev/null
+ssh-add ~/.ssh/github &> /dev/null
 ssh-add ~/.ssh/gitlab &> /dev/null
 ssh-add ~/.ssh/gitlab-fsae &> /dev/null
 ssh-add ~/.ssh/gitlab-step &> /dev/null
-ssh-add ~/.ssh/eclipse &> /dev/null
 
 # execute the warm welcome message
 ~/Software/welcome
