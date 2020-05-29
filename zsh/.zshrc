@@ -75,7 +75,9 @@ function puush() {
             https://files.gpol.sh/api/upload
     )
 
-    if [[ -n "$DISPLAY" ]]; then
+    if [[ -n "$SWAYSOCK" ]]; then
+        echo "$file_url" | wl-copy
+    elif [[ -n "$DISPLAY" ]]; then
         xsel --clipboard <<< "$file_url"
     else
         echo "$file_url"
