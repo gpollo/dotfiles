@@ -85,6 +85,16 @@ function puush() {
 }
 
 #################
+# zip directory #
+#################
+
+function zipit() {
+    local dir="$1"
+
+    zip -r "$(basename "$dir").zip" "$dir"
+}
+
+#################
 # other aliases #
 #################
 
