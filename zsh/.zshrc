@@ -32,7 +32,7 @@ function highlight() {
 	 
 	fg_c=$(echo -e "\e[1;${fg_color_map[$1]}m")
 	c_rs=$'\e[0m'
-	sed -u s"/$2/$fg_c\0$c_rs/g"
+	sed -E s"/$2/$fg_c\0$c_rs/g"
 }
 
 alias hlr="highlight red"
