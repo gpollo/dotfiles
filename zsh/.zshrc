@@ -94,6 +94,35 @@ function zipit() {
     zip -r "$(basename "$dir").zip" "$dir"
 }
 
+######################################
+# dissasemble a function in a binary #
+######################################
+
+function disas() {
+    local filename="$1"
+    local funcname="$2"
+
+    if [[ ! -f "$filename" ]]; then
+        filename=$(which "$filename")
+    fi
+
+    gdb -batch -ex "file $filename" -ex "disas $funcname"
+}
+
+###############
+# AWK aliases #
+###############
+
+function getcol() {
+    local col_number="$1"
+
+    awk "{print \$$col_number}"
+}
+
+function lastcol() {
+    awk '{print $NF}'
+}
+
 #################
 # other aliases #
 #################
