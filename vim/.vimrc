@@ -13,9 +13,10 @@ set mouse=a
 set hlsearch
 set incsearch
 set paste
-set colorcolumn=80
+set colorcolumn=100
 
-set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
+" used to remember last session
+set viminfo='20,<1000
 
 " preview window colors (white around black)
 highlight Pmenu ctermfg=15 ctermbg=0
