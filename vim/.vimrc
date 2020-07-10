@@ -28,6 +28,7 @@ call vundle#begin()
     Plugin 'prabirshrestha/async.vim'
     Plugin 'prabirshrestha/vim-lsp'
     Plugin 'prabirshrestha/asyncomplete.vim'
+    Plugin 'dense-analysis/ale'
 call vundle#end()
 
 " use space rather than tabs
@@ -39,6 +40,7 @@ set smarttab
 
 filetype plugin indent on
 syntax on
+au BufRead,BufNewFile .clang-tidy set filetype=yaml
 
 " capital letter alternative to some commands
 command! W  write
@@ -56,9 +58,14 @@ map <nowait> def :LspDefinition<CR>
 map <nowait> qdec :LspPeekDeclaration<CR>
 map <nowait> qdef :LspPeekDefinition<CR>
 
-""""""""""""""""""""""""""""
-" Language Server Protocol "
-""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""
+" Language Configurations "
+"""""""""""""""""""""""""""
+
+let g:ale_linters={
+\  'c': ['clangtidy'],
+\  'cpp': ['clangtidy'],
+\}
 
 " configuration "
 
@@ -70,9 +77,16 @@ if executable('ccls')
    au User lsp_setup call lsp#register_server({
       \ 'name': 'ccls',
       \ 'cmd': {server_info->['ccls']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+      \ 'initialization_options': {'cache': {'directory': '/tmp/ccls/cache' }},
       \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
       \ })
 endif
+let g:ale_c_clangtidy_executable = 'clang-tidy'
+autocmd BufEnter * if &filetype ==# 'c' | :call SetCompilationDatabaseBuildDirectory() | endif
+
+let g:ale_cpp_clangtidy_executable = 'clang-tidy'
+autocmd BufEnter * if &filetype ==# 'cpp' | :call SetCompilationDatabaseBuildDirectory() | endif
 
 " python "
 
@@ -136,3 +150,37 @@ if executable('java')
         \ 'whitelist': ['java'],
         \ })
 endif
+
+""""""""""""""""""""
+" Helper Functions "
+""""""""""""""""""""
+
+" finds and set the dir containing C/C++ compilation database "
+func! SetCompilationDatabaseBuildDirectory()
+    let l:db_pre = expand('%:h')
+    let l:db_post = ''
+
+    while !filereadable(l:db_pre . l:db_post . '/compile_commands.json')
+        " probe a potential build dir
+        if filereadable(l:db_pre . l:db_post . '/build/compile_commands.json')
+            let l:db_post = l:db_post . '/build'
+            break
+        endif
+
+        " otherwise try a directory up
+        let l:db_post = l:db_post . '/..'
+
+        " Give up after after 10 dirs up (5 + 3 * 10).
+        if strlen(l:db_post) > 35
+            let l:db_post = ''
+            break
+        endif
+    endwhile
+
+
+    let g:ale_c_clangtidy_options = '-p=''' . l:db_pre . l:db_post . ''''
+    let g:ale_cpp_clangtidy_options = '-p=''' . l:db_pre . l:db_post . ''''
+    "let g:clang_compilation_database = l:db_pre . l:db_post
+    "let g:syntastic_c_clang_tidy_post_args = '-p=''' . l:db_pre . l:db_post . ''''
+    "let g:syntastic_cpp_clang_tidy_post_args = g:syntastic_c_clang_tidy_post_args
+endfunc
