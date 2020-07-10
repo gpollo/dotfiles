@@ -41,11 +41,11 @@ function print_disk {
         if [[ $WIDTH -gt $MAXWIDTH ]]; then
             MAXWIDTH=$WIDTH
         fi
-    done < <(df -h | grep -i "/dev/sd")
+    done < <(df -h | grep -i "/dev/sd\|/dev/nvme")
 
     while IFS= read -r LINE; do
         print_center "$LINE" $MAXWIDTH
-    done < <(df -h | grep -i "/dev/sd")
+    done < <(df -h | grep -i "/dev/sd\|/dev/nvme")
 }
 
 clear
