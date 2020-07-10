@@ -53,10 +53,10 @@ command! Q  quit
 " Hotkeys "
 """""""""""
 
-map <nowait> dec :LspDeclaration<CR>
-map <nowait> def :LspDefinition<CR>
-map <nowait> qdec :LspPeekDeclaration<CR>
-map <nowait> qdef :LspPeekDefinition<CR>
+nnoremap <nowait> dec :LspDeclaration<CR>
+nnoremap <nowait> def :LspDefinition<CR>
+nnoremap <nowait> qdec :LspPeekDeclaration<CR>
+nnoremap <nowait> qdef :LspPeekDefinition<CR>
 
 """""""""""""""""""""""""""
 " Language Configurations "
