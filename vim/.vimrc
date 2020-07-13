@@ -17,6 +17,10 @@ set colorcolumn=100
 
 " used to remember last session
 set viminfo='20,<1000
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
 
 " preview window colors (white around black)
 highlight Pmenu ctermfg=15 ctermbg=0
