@@ -123,6 +123,18 @@ function lastcol() {
     awk '{print $NF}'
 }
 
+################
+# make wrapper #
+################
+
+function make() {
+    if [[ -f "build.ninja" ]]; then
+        ninja $@
+    else
+        make $@
+    fi
+}
+
 #################
 # other aliases #
 #################
