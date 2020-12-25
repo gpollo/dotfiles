@@ -131,7 +131,7 @@ function make() {
     if [[ -f "build.ninja" ]]; then
         ninja $@
     else
-        make $@
+        /usr/bin/make $@
     fi
 }
 
