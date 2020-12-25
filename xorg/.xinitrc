@@ -18,7 +18,7 @@ wmname LG3D
 pulseaudio --start
 
 # background picture
-feh --bg-fill "$HOME/Pictures/wallpaper/falcon_heavy.jpg"
+feh --bg-fill "$HOME/Pictures/wallpaper/material.jpg"
 
 # mouse speed/resolution
 xset m 1 0
@@ -42,4 +42,4 @@ redshift -l 45.5:-73.6 -t 6500:4000 &
 compton&
 
 # start xmonad
-exec dbus-launch xmonad
+exec dbus-launch i3
