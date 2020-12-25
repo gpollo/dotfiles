@@ -1,0 +1,24 @@
+ethernet enp4s0 {
+    format_up = " %ip "
+    format_down = " no ip "
+}
+
+order += "ethernet enp4s0"
+
+memory {
+    format = " %used/%total "
+}
+
+order += "memory"
+
+cpu_usage {
+    format = " CPUs %usage "
+}
+
+order += "cpu_usage"
+
+tztime montreal {
+    format = " %H:%M:%S - %d %b. %Y (%A) "
+}
+
+order += "tztime montreal"
