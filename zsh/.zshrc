@@ -171,7 +171,7 @@ alias termbin="nc termbin.com 9999"
 
 # execute graphical server if logon is in TTY1
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-	exec sway
+	exec startx
 fi
 
 # add ssh keys
