@@ -65,14 +65,14 @@ alias sd="search_directory"
 ###############
 
 function puush() {
-    local filename="$1"
+    local file_name="$1"
     local file_url
 
     file_url=$(
         curl -X POST --fail --silent --show-error \
             --cookie "SESSION_KEY=$PUUSH_API_KEY" \
-            --form "file=@$filename" \
-            https://files.gpol.sh/api/upload
+            --form "file=@$file_name" \
+            "https://files.gpol.sh/api/upload"
     )
 
     if [[ -n "$SWAYSOCK" ]]; then
@@ -82,6 +82,22 @@ function puush() {
     else
         echo "$file_url"
     fi
+}
+
+function puushls() {
+    curl -X GET --fail --silent --show-error \
+        --cookie "SESSION_KEY=$PUUSH_API_KEY" \
+        "https://files.gpol.sh/api/list" | jq .
+}
+
+function puushrm() {
+    local file_id
+
+    for file_id in "$@"; do
+        curl -X DELETE --fail --silent --show-error \
+            --cookie "SESSION_KEY=$PUUSH_API_KEY" \
+            "https://files.gpol.sh/$file_id"
+    done
 }
 
 #################
