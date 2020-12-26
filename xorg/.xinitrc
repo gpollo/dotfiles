@@ -27,10 +27,14 @@ razercfg --res 900
 # use french canadian keyboard
 setxkbmap ca
 
-# dual monitor setup
-xrandr --output "HDMI-A-1"      --mode "1920x1080" --left-of  "HDMI-A-0"
-xrandr --output "DisplayPort-1" --mode "1920x1080" --right-of "HDMI-A-0"
-xrandr --output "HDMI-A-0"      --mode "1920x1080" --primary
+# monitor setup
+if xrandr | grep LVDS-1; then
+    xrandr --output "LVDS-1" --mode "1920x1080" --primary
+else
+    xrandr --output "HDMI-A-1"      --mode "1920x1080" --left-of  "HDMI-A-0"
+    xrandr --output "DisplayPort-1" --mode "1920x1080" --right-of "HDMI-A-0"
+    xrandr --output "HDMI-A-0"      --mode "1920x1080" --primary
+fi
 
 # disable mouse acceleration
 xset m 1 0
