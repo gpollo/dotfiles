@@ -1,28 +1,19 @@
-general {
-    colors   = false
-    interval = 5
+ethernet enp4s0 {
+    format_up = " wired: %ip "
+    format_down = ""
 }
 
-order += "wireless wlp1s0"
-order += "cpu_usage"
-order += "tztime local"
-order += "battery 0"
+order += "ethernet enp4s0"
 
-wireless wlp1s0 {
-    format_up   =  "📶 %essid, %ip"
-    format_down =  ""
+ethernet wlp1s0 {
+    format_up = " wifi: %ip "
+    format_down = ""
 }
 
-cpu_usage {
-    format = "💻 cpu: %usage"
-}
-
-tztime local {
-    format = "🕐 %A, %B %e - %H:%M:%S"
-}
+order += "ethernet wlp1s0"
 
 battery 0 {
-    format      = "%status %percentage"
+    format      = " %status %percentage "
     format_down = ""
 
     last_full_capacity       = true
@@ -30,10 +21,30 @@ battery 0 {
     hide_seconds             = true
 
     threshold_type = percentage
-    low_threshold  = 11
+    low_threshold = 30
 
-    status_chr  = "⚡"
-    status_bat  = "🔋"
-    status_unk  = "⚠"
-    status_full = "✔"
+    status_chr  = "charging"
+    status_bat  = "discharging"
+    status_unk  = "unknown"
+    status_full = "full"
 }
+
+order += "battery 0"
+
+memory {
+    format = " %used/%total "
+}
+
+order += "memory"
+
+cpu_usage {
+    format = " CPUs %usage "
+}
+
+order += "cpu_usage"
+
+tztime montreal {
+    format = " %H:%M:%S - %d %b. %Y (%A) "
+}
+
+order += "tztime montreal"
