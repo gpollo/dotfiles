@@ -1,3 +1,10 @@
+volume master {
+    format = " ♪ %volume "
+    format_muted = " ♪ muted (%volume) "
+}
+
+order += "volume master"
+
 ethernet enp4s0 {
     format_up = " wired: %ip "
     format_down = ""
