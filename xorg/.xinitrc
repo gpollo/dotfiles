@@ -14,9 +14,6 @@ fi
 # fix some tiling window manager bugs
 wmname LG3D
 
-# start pulse audio
-pulseaudio --start
-
 # mouse speed/resolution
 xset m 1 0
 razercfg --res 900
