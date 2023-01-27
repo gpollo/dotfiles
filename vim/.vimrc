@@ -26,14 +26,16 @@ autocmd BufReadPost *
 highlight Pmenu ctermfg=15 ctermbg=0
 
 " external plugins
-call vundle#begin()
-    Plugin 'VundleVim/Vundle.vim'
-    Plugin 'fatih/vim-go'
-    Plugin 'prabirshrestha/async.vim'
-    Plugin 'prabirshrestha/vim-lsp'
-    Plugin 'prabirshrestha/asyncomplete.vim'
-    Plugin 'dense-analysis/ale'
-call vundle#end()
+if exists('*vundle#begin')
+    call vundle#begin()
+        Plugin 'VundleVim/Vundle.vim'
+        Plugin 'fatih/vim-go'
+        Plugin 'prabirshrestha/async.vim'
+        Plugin 'prabirshrestha/vim-lsp'
+        Plugin 'prabirshrestha/asyncomplete.vim'
+        Plugin 'dense-analysis/ale'
+    call vundle#end()
+endif
 
 " use space rather than tabs
 set tabstop=4
