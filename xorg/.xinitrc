@@ -17,9 +17,6 @@ wmname LG3D
 # start pulse audio
 pulseaudio --start
 
-# background picture
-feh --bg-fill "$HOME/Pictures/wallpaper/material.jpg"
-
 # mouse speed/resolution
 xset m 1 0
 razercfg --res 900
@@ -44,6 +41,9 @@ redshift -l 45.5:-73.6 -t 6500:4000 &
 
 # compton compositor
 compton&
+
+# background picture
+feh --bg-fill "$HOME/Pictures/wallpaper/material3.png"
 
 # start xmonad
 exec dbus-launch i3
