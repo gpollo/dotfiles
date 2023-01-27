@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+set -e
+
+SCREEN_SINK="alsa_output.pci-0000_2d_00.1.hdmi-stereo-extra4"
+HEADPHONE_SINK="alsa_output.usb-XMOS_XMOS_USB_Audio_2.0_0000-00.analog-stereo"
+LAST_SINK=$(pactl get-default-sink)
+
+if [[ "${LAST_SINK}" == "${SCREEN_SINK}" ]]; then
+    pactl set-default-sink "${HEADPHONE_SINK}"
+elif [[ "${LAST_SINK}" == "${HEADPHONE_SINK}" ]]; then
+    pactl set-default-sink "${SCREEN_SINK}"
+else
+    echo "error: invalid default sink \`$last_default_sink\`"
+    exit 1
+fi
