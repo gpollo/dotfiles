@@ -227,4 +227,4 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 fi
 
 # execute the warm welcome message
-~/Software/welcome
+timeout 1 ~/Software/welcome
