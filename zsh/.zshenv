@@ -57,3 +57,7 @@ export STEAM_RUNTIME=0
 
 # change directory color
 export LS_COLORS=$LS_COLORS:'di=1;32'
+
+# mpc settings
+export MPD_HOST=192.168.0.108
+export MPD_PORT=6600
