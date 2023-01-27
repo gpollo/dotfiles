@@ -21,18 +21,22 @@ export LC_MEASUREMENT=en_CA.UTF-8
 export LC_IDENTIFICATION=en_CA.UTF-8
 export LC_ALL=en_CA.UTF-8
 
-# common paths
-export GOPATH=~/.go
-export PATH=$PATH:~/Software
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:~/Software/stack-1.7.1-linux-x86_64
-export PATH=$PATH:~/.local/bin/
-export PATH=$PATH:~/.gem/ruby/2.6.0/bin
-export ANDROID_HOME=/opt/android-sdk
-export GOPATH=$HOME/Workspace/go
+function append_path() {
+    local new_path="$(readlink -f "$1")"
 
-# Add .NET Core SDK tools
-export PATH="$PATH:~/.dotnet/tools"
+    if [[ ! -d "${new_path}" ]]; then
+        echo "warning: path directory '${new_path}' does not exist"
+    fi
+
+    if [[ ":$PATH:" != *":${new_path}:"* ]]; then
+        export PATH="${PATH:+"$PATH:"}${new_path}"
+    fi
+}
+
+# common paths
+append_path "${HOME}/Software/"
+append_path "${HOME}/.local/bin/"
+append_path "${HOME}/.cargo/bin/"
 
 # keyboard layout
 export XKB_DEFAULT_LAYOUT=ca
