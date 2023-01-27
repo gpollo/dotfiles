@@ -1,8 +1,12 @@
 set $mod Mod4
 
+for_window [class="steam_app_1182480"] floating enable
+for_window [class="steam_app_502500"] floating enable
+for_window [class="steam_app_253230"] floating enable
+for_window [title="JidePopup"] floating enable
 # styling
 for_window [class=".*"] border pixel 0
-gaps inner 30
+gaps inner 0
 
 font pango:cascadia mono 10
 client.focused            #FF000000 #FF000000 #FF000000 #FF000000 #FF000000
@@ -11,8 +15,8 @@ client.unfocused          #FF000000 #FF000000 #FF000000 #FF000000 #FF000000
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -25,6 +29,10 @@ bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+p exec --no-startup-id dmenu_run -b
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -b"
 
+bindsym $mod+F1 exec toggle-audio-sink
+bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym $mod+F4 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 
 # change focus
 bindsym $mod+j focus left
@@ -143,12 +151,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-    output primary
+    output DisplayPort-1-Middle
+    output LVDS-1
     position top
     status_command i3status
-}
-
-bar {
-    output nonprimary
-    position top
 }
