@@ -225,15 +225,5 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 	exec startx
 fi
 
-# add ssh keys
-ssh-add ~/.ssh/aur &> /dev/null
-ssh-add ~/.ssh/bitbucket &> /dev/null
-ssh-add ~/.ssh/digitalocean &> /dev/null
-ssh-add ~/.ssh/eclipse &> /dev/null
-ssh-add ~/.ssh/github &> /dev/null
-ssh-add ~/.ssh/gitlab &> /dev/null
-ssh-add ~/.ssh/gitlab-fsae &> /dev/null
-ssh-add ~/.ssh/gitlab-step &> /dev/null
-
 # execute the warm welcome message
 ~/Software/welcome
