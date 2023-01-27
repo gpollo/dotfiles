@@ -151,6 +151,57 @@ function make() {
     fi
 }
 
+###############
+# binary diff #
+###############
+
+function xxd_diff() {
+    local file_1="$1"
+    local file_2="$2"
+    local temp_output_1
+    local temp_output_2
+
+    temp_output_1=$(mktemp)
+    temp_output_2=$(mktemp)
+
+    xxd -c 32 "${file_1}" > "${temp_output_1}"
+    xxd -c 32 "${file_2}" > "${temp_output_2}"
+    diff "${temp_output_1}" "${temp_output_2}"
+
+    rm "${temp_output_1}" "${temp_output_2}" 2> /dev/null > /dev/null
+}
+
+#################
+# assembly diff #
+#################
+
+function objdump_diff() {
+    local file_1="$1"
+    local file_2="$2"
+    local temp_output_1
+    local temp_output_2
+
+    temp_output_1=$(mktemp)
+    temp_output_2=$(mktemp)
+
+    objdump -D "${file_1}" > "${temp_output_1}"
+    objdump -D "${file_2}" > "${temp_output_2}"
+    diff "${temp_output_1}" "${temp_output_2}"
+
+    rm "${temp_output_1}" "${temp_output_2}" 2> /dev/null > /dev/null
+}
+
+#################
+# grep in files #
+#################
+
+function grf() {
+    local pattern="$1"
+    local extension="$2"
+
+    grep -ni "${pattern}" $(find . -type f -iname "*.${extension}")
+}
+
 #################
 # other aliases #
 #################
