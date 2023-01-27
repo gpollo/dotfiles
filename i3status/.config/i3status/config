@@ -5,12 +5,12 @@ volume master {
 
 order += "volume master"
 
-ethernet enp4s0 {
+ethernet enp39s0 {
     format_up = " wired: %ip "
     format_down = ""
 }
 
-order += "ethernet enp4s0"
+order += "ethernet enp39s0"
 
 ethernet wlp1s0 {
     format_up = " wifi: %ip "
