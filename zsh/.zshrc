@@ -72,6 +72,7 @@ function puush() {
         curl -X POST --fail --silent --show-error \
             --cookie "SESSION_KEY=$PUUSH_API_KEY" \
             --form "file=@$file_name" \
+            --progress-bar \
             "https://files.gpol.sh/api/upload"
     )
 
